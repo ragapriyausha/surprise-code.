@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Little Surprise ❤️</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif}
+body{overflow:hidden}
+.page{display:none;height:100vh;align-items:center;justify-content:center;flex-direction:column;text-align:center;padding:12px;color:#fff;position:relative;background:linear-gradient(-45deg,#ff6fa5,#7aa8ff,#d8a4ff,#ff9dbb);background-size:400% 400%;animation:bg 12s ease infinite}
+.active{display:flex}
+@keyframes bg{0%{background-position:0 50%}50%{background-position:100% 50%}100%{background-position:0 50%}}
+.heartf{position:absolute;color:#fff8;font-size:14px;animation:up linear infinite}
+@keyframes up{from{transform:translateY(110vh)}to{transform:translateY(-120px)}}
+button{padding:8px 16px;border:none;border-radius:20px;margin:6px;font-size:13px}
+.no{position:absolute;background:#ff1744;color:#fff}
+.yes{background:#00c853;color:#fff}
+.quote{max-width:95%;line-height:1.4;margin:6px;font-size:14px}
+.bigheart{font-size:65px;cursor:pointer}
+.gift{font-size:100px;cursor:pointer}
+.arrow{font-size:28px;cursor:pointer;margin-top:4px}
+#counter{line-height:1.4;font-size:13px}
+.popup{position:fixed;inset:0;background:#000b;display:flex;align-items:center;justify-content:center;padding:20px}
+.box{background:white;color:#333;padding:20px;border-radius:15px;max-width:500px}
+img{max-width:90%;max-height:55vh;border-radius:20px;border:4px solid white;box-shadow:0 0 25px gold}
+</style></head>
+<body>
+<div id="hearts"></div>
+
+<div class="page active" id="p1">
+<h1>❤️ Will You Accept My Proposal? ❤️</h1><br>
+<button class="yes" onclick="show('p2')">YES ❤️</button>
+<button class="no" id="no">NO 😜</button>
+</div>
+
+<div class="page" id="p2">
+<h1>💙 A Little Surprise For My Man 💙</h1>
+<div class="quote">Before you came into my life,<br>I never knew a heart could feel so complete.<br>You turned ordinary days into beautiful memories<br>and gave meaning to every tomorrow I dream of. ❤️</div>
+<button onclick="show('p3')">Click Here</button>
+</div>
+
+<div class="page" id="p3">
+<div><b>💍 31 October 2025</b><br>The Day My Forever Began</div><br>
+<div class="quote">If one day my heart stops beating,<br>it will still whisper your name.<br>Because loving you is not something I do...<br>it is who I am. ❤️</div>
+<div class="bigheart" onclick="startCounter()">❤️</div>
+<div style="font-size:13px">Click Me ❤️</div>
+<div id="counter"></div><button id="closeCounter" onclick="hideCounter()" style="display:none">❌ Close</button>
+<div class="quote">Every second that passes<br>becomes another second I am grateful<br>to call you mine.<br>Time may keep moving,<br>but my heart remains where it has always belonged —<br>with you. 💞</div>
+<button onclick="letter()">💌 Read My Heart</button>
+<div class="arrow" onclick="show('p4')">➡️</div>
+</div>
+
+<div class="page" id="p4">
+<div class="gift" onclick="gift()">🎁</div>
+<div id="giftarea"></div>
+</div>
+
+<script>
+for(let i=0;i<40;i++){let h=document.createElement('div');h.className='heartf';h.innerHTML='❤️';h.style.left=Math.random()*100+'vw';h.style.animationDuration=(5+Math.random()*8)+'s';document.body.appendChild(h);}
+function show(id){document.querySelectorAll('.page').forEach(x=>x.classList.remove('active'));document.getElementById(id).classList.add('active');}
+no.onmouseover=()=>{no.style.left=Math.random()*(innerWidth-120)+'px';no.style.top=Math.random()*(innerHeight-80)+'px';}
+
+let started=false;
+function startCounter(){
+if(started)return; started=true;document.getElementById('closeCounter').style.display='inline-block';
+let s=new Date('2025-10-31');
+setInterval(()=>{
+let d=Math.abs(new Date()-s);
+let days=Math.floor(d/86400000), weeks=Math.floor(days/7), months=Math.floor(days/30.44);
+counter.innerHTML=`${months} Months ❤️<br>${weeks} Weeks ❤️<br>${days} Days ❤️<br>${Math.floor(d/3600000)} Hours ❤️<br>${Math.floor(d/60000)} Minutes ❤️<br>${Math.floor(d/1000)} Seconds ❤️`;
+},1000);
+}
+
+
+function hideCounter(){document.getElementById('counter').innerHTML='';document.getElementById('closeCounter').style.display='none';started=false;}
+function letter(){
+let p=document.createElement('div');
+p.className='popup';
+p.innerHTML=`<div class='box'><h3>💌 My Love</h3><br>
+You entered my life quietly, but changed it completely.<br><br>
+You became my comfort when I was tired, my strength when I felt weak, and my smile when the world felt heavy.<br><br>
+If I could relive my life a thousand times, I would still search for you in every lifetime and fall in love with you all over again.<br><br>
+You are my safest place, my favourite person, my greatest blessing and the most beautiful chapter of my life. ❤️<br><br>
+<button onclick="this.parentElement.parentElement.remove()">Close</button></div>`;
+document.body.appendChild(p);
+}
+
+function gift(){
+giftarea.innerHTML=`<div style='width:280px;height:320px;border:3px dashed #fff;display:flex;align-items:center;justify-content:center;border-radius:20px;font-size:28px;background:rgba(255,255,255,.15)'>📷<br>Add Pic</div>`;
+}
+</script></body></html>
